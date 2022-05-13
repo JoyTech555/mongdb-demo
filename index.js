@@ -26,8 +26,14 @@ async function createCourse(){
     console.log(result);
 }
 
-async function getCourses() {
-    
+async function getCourses() {// Querying Document
+    const courses = await Course
+        .find({ author: 'Joy', isPublished: true })
+        .limit(10)
+        .sort({ name: 1 })
+        .select({ name:1, tags: 1 });
+    console.log(courses);
 }
 
+getCourses(); // get array object courses from mongoDB
  //createCourse(); //Create Schema 
